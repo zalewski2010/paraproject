@@ -3,6 +3,7 @@ package manager;
 import model.Student;
 import java.util.ArrayList;
 
+//zarządza studentami
 public interface StudentManager {
     void addStudent(Student student);
     void removeStudent(String studentID);

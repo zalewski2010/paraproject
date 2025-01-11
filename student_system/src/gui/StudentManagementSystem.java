@@ -115,6 +115,12 @@ public class StudentManagementSystem {
             }
             outputArea.setText(result.toString());
         });
+        //średnia
+        btnCalculateAverage.addActionListener(e -> {
+            System.out.println("Calculate Average button clicked.");
+            double average = manager.calculateAverageGrade();
+            outputArea.setText("Average grade of all students: " + average);
+        });
 
 
         panel.add(lblID);

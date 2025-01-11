@@ -109,17 +109,25 @@ public class StudentManagerImpl implements StudentManager {
     }
 
     @Override
-    public double calculateAverageGrade() {
-        String sql = "SELECT AVG(grade) AS averageGrade FROM students";
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            if (rs.next()) {
-                return rs.getDouble("averageGrade");
+public double calculateAverageGrade() {
+    String sql = "SELECT AVG(grade) AS averageGrade FROM students";
+    try (Statement stmt = connection.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
+        if (rs.next()) {
+            double average = rs.getDouble("averageGrade");
+            if (rs.wasNull()) {  // Jeśli zapytanie zwraca NULL
+                System.out.println("No grades found in the database.");
+                return 0.0;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Calculated Average Grade: " + average);
+            return average;
         }
-        return 0.0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        System.err.println("SQL Error while calculating average grade: " + e.getMessage());
     }
+    System.out.println("Returning 0.0 due to an error or no data.");
+    return 0.0;
+}
 }
 

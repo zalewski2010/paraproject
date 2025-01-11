@@ -2,22 +2,9 @@
 
 Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
 
-## Folder Structure
 
-The workspace contains two folders by default, where:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
-
-Student Management System (SMS)
+# Student Management System (SMS)
 Opis projektu
 Student Management System (SMS) to aplikacja desktopowa napisana w języku Java z wykorzystaniem Swing, JDBC oraz bazy danych SQLite. System umożliwia zarządzanie danymi studentów, takie jak:
 
@@ -31,7 +18,7 @@ Aplikacja posiada graficzny interfejs użytkownika (GUI), dzięki któremu obsł
 Funkcjonalności
 Dodawanie studenta:
 
-Użytkownik wprowadza dane studenta: ID, imię, wiek i ocenę.
+Użytkownik wprowadza dane studenta: ID, imię,  nazwisko wiek i ocenę.
 Walidacja danych (np. wiek musi być liczbą dodatnią, a ocena w zakresie 0-100).
 Dane są zapisywane w bazie SQLite.
 Usuwanie studenta:
@@ -47,6 +34,7 @@ Wszystkie rekordy z bazy danych są wyświetlane w panelu tekstowym GUI.
 Obliczanie średniej ocen:
 
 System oblicza i wyświetla średnią ocen wszystkich studentów w bazie danych.
+
 Wymagania systemowe
 Java Development Kit (JDK) 8 lub nowszy.
 SQLite (wbudowana baza danych SQLite3).
@@ -56,29 +44,31 @@ Instrukcje instalacji i uruchamiania
 Sklonuj repozytorium lub pobierz projekt:
 bash
 Skopiuj kod
-git clone <URL_REPOZYTORIUM>
-cd <FOLDER_PROJEKTU>
+git clone <https://github.com/zalewski2010/paraproject/tree/main/student_system/src>
+
+
 Otwórz projekt w IDE lub skompiluj go w terminalu:
-bash
-Skopiuj kod
+
 javac -d bin -sourcepath src src/application/Main.java
-2. Uruchom aplikację
+
+Uruchom aplikację
 W IDE:
 
 Uruchom klasę Main.java.
 Z terminala:
-
-bash
-Skopiuj kod
 java -cp bin application.Main
+
+# LUB w VSCODE
+
+w projekcie utwórz folder libs
+i ściagnij z internetu plik sqlite-jdbc-3.36.0.3.jar i wklej go do folderu libs
+
 Konfiguracja bazy danych
-W aplikacji wykorzystywana jest baza SQLite. Domyślna konfiguracja tworzy bazę danych students.db w katalogu głównym projektu.
+W aplikacji wykorzystywana jest baza SQLite. Domyślna konfiguracja tworzy bazę danych students.db w katalogu głównym projektu w folderze database.
 Tabela students zostanie automatycznie utworzona przy pierwszym uruchomieniu programu.
 
-Jeśli  nie zostanie utworzona to ściągnij do folderu libs
-plik sqlite-jdbc-3.36.0.3.jar
 
-Następnie projekt można kompilować :
+Następnie projekt należy kompilować :
 javac -cp "src/libs/sqlite-jdbc-3.36.0.3.jar" -d bin src/**/*.java
 
 uruchamiać :
@@ -91,11 +81,14 @@ sql
 Skopiuj kod
 CREATE TABLE students (
     name TEXT,
+    eftername TEXT,
     age INTEGER,
     grade REAL,
     studentID TEXT PRIMARY KEY
 );
+
 Przykłady działania
+
 Dodanie nowego studenta
 W GUI wprowadź:
 ID: ID123
@@ -103,18 +96,19 @@ Imię: Anna Kowalska
 Wiek: 20
 Ocena: 85.5
 Kliknij przycisk "Add Student".
+
 W obszarze tekstowym pojawi się komunikat: Student added successfully!.
 Wyświetlenie wszystkich studentów
 Kliknij przycisk "Display All Students".
 W obszarze tekstowym zobaczysz listę studentów:
-yaml
-Skopiuj kod
-Student ID: ID123, Name: Anna Kowalska, Age: 20, Grade: 85.5
+
+
 Struktura projektu
 model/ – Zawiera klasę Student, która reprezentuje dane studenta.
 manager/ – Zawiera interfejs StudentManager oraz jego implementację StudentManagerImpl. Odpowiada za logikę biznesową i operacje na bazie danych.
 gui/ – Zawiera GUI oparte na Swing (StudentManagementSystem).
 application/ – Zawiera klasę Main.java, która uruchamia aplikację.
+
 Obsługa wyjątków
 Błędne dane wejściowe:
 Wiek i ocena muszą być poprawnymi liczbami.
@@ -123,8 +117,6 @@ Nieznalezienie studenta:
 Przy próbie usunięcia/aktualizacji studenta, który nie istnieje w bazie, pojawi się komunikat o błędzie.
 Błędy bazy danych:
 Aplikacja obsługuje wyjątki SQL, zapewniając, że aplikacja nie ulegnie awarii.
-To Do
-Dodanie bardziej zaawansowanego systemu walidacji danych.
-Rozszerzenie interfejsu GUI o możliwość wyszukiwania studentów po ID.
-Dodanie opcji eksportu listy studentów do pliku CSV.
+
+
 
